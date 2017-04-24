@@ -1,3 +1,5 @@
+import React from 'react';
+
 class App extends React.Component {
 
   constructor() {
@@ -12,7 +14,5 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('container')
-);
+export default App;
+module.exports = App;
