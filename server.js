@@ -16,17 +16,10 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 
-//React Server
-require('babel-core/register')({
-    presets: ["react", "es2015"]
-})
-var React = require('react');
-var ReactDOMServer = require('react-dom/server');
-var MyComponent = React.createFactory(require('./public/App'));
-var ComponentHTML = ReactDOMServer.renderToString(MyComponent());
+
 
 app.get('*', function (req, res) {
-  res.render('home',{resultat: ComponentHTML});
+  res.render('home');
 })
 
 app.listen(process.env.PORT || 80, function(){
