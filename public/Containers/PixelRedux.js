@@ -9,7 +9,6 @@ function mapDispatchToProps(dispatch) {
   
   return {
     coordonate: function(e) { 
-        console.log("mapDispatchToProps coordonate",e);
         dispatch( {type: 'mousemoove', value: {x:e.screenX,y:e.screenY}} ) 
     }
   }

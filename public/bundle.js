@@ -10971,7 +10971,7 @@ module.exports = g;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _react = __webpack_require__(12);
@@ -10988,19 +10988,17 @@ var connect = __webpack_require__(15).connect;
 
 
 function mapStateToProps(state) {
-  console.log("mapstatetoprops", state.counter);
-  return { value: state.counter };
+    return { value: state.counter };
 }
 function mapDispatchToProps(dispatch) {
-  return {
-    onIncreaseClick: function onIncreaseClick() {
-      console.log("click");
-      dispatch({ type: 'increase' });
-    },
-    onDecreaseClick: function onDecreaseClick() {
-      dispatch({ type: 'decrease' });
-    }
-  };
+    return {
+        onIncreaseClick: function onIncreaseClick() {
+            dispatch({ type: 'increase' });
+        },
+        onDecreaseClick: function onDecreaseClick() {
+            dispatch({ type: 'decrease' });
+        }
+    };
 }
 
 var CounterRedux = connect(mapStateToProps, mapDispatchToProps)(_Counter2.default);
@@ -11040,7 +11038,6 @@ function mapDispatchToProps(dispatch) {
 
   return {
     coordonate: function coordonate(e) {
-      console.log("mapDispatchToProps coordonate", e);
       dispatch({ type: 'mousemoove', value: { x: e.screenX, y: e.screenY } });
     }
   };
@@ -11060,7 +11057,7 @@ module.exports = PixelRedux;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(12);
@@ -11077,7 +11074,8 @@ var connect = __webpack_require__(15).connect;
 
 
 function mapStateToProps(state) {
-    return { value: state.count };
+  console.log(state);
+  return { value: state.counter, positionx: state.pixel.x, positiony: state.pixel.y };
 }
 
 var TitleCounterRedux = connect(mapStateToProps, function () {})(_TitleCounter2.default);
@@ -11323,9 +11321,14 @@ var TitleCounter = function (_React$Component) {
   _createClass(TitleCounter, [{
     key: 'render',
     value: function render() {
+      console.log(this.props);
+      var divStyle = {
+        color: "#" + (+this.props.positionx).toString(16).toUpperCase() + (+this.props.positiony).toString(16).toUpperCase()
+      };
+      console.log(divStyle);
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'divtitle', style: divStyle },
         _react2.default.createElement(
           'h1',
           null,
@@ -11395,6 +11398,7 @@ var store = (0, _redux.createStore)(rootReducer);
   _react2.default.createElement(
     'div',
     null,
+    _react2.default.createElement(_PixelRedux2.default, null),
     _react2.default.createElement(_TitleCounterRedux2.default, null),
     _react2.default.createElement(_CounterRedux2.default, null),
     _react2.default.createElement(_PixelRedux2.default, null)
