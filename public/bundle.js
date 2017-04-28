@@ -11057,7 +11057,7 @@ module.exports = PixelRedux;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _react = __webpack_require__(12);
@@ -11074,8 +11074,7 @@ var connect = __webpack_require__(15).connect;
 
 
 function mapStateToProps(state) {
-  console.log(state);
-  return { value: state.counter, positionx: state.pixel.x, positiony: state.pixel.y };
+    return { value: state.counter, positionx: state.pixel.x, positiony: state.pixel.y };
 }
 
 var TitleCounterRedux = connect(mapStateToProps, function () {})(_TitleCounter2.default);
@@ -11321,11 +11320,9 @@ var TitleCounter = function (_React$Component) {
   _createClass(TitleCounter, [{
     key: 'render',
     value: function render() {
-      console.log(this.props);
       var divStyle = {
         color: "#" + (+this.props.positionx).toString(16).toUpperCase() + (+this.props.positiony).toString(16).toUpperCase()
       };
-      console.log(divStyle);
       return _react2.default.createElement(
         'div',
         { className: 'divtitle', style: divStyle },
@@ -11390,7 +11387,29 @@ var rootReducer = (0, _redux.combineReducers)({
   pixel: _pixelReducer2.default
 });
 
-var store = (0, _redux.createStore)(rootReducer);
+//var initialStateStr = document.getElementById('container').getAttribute("state");
+
+console.log(initialState);
+
+if (initialState != null) {
+  var store = (0, _redux.createStore)(rootReducer, initialState);
+} else {
+  var store = (0, _redux.createStore)(rootReducer);
+}
+
+function handleChange() {
+  var myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+  var myRequest = new Request('/stateChange', { method: 'POST', body: "state=" + JSON.stringify(store.getState()), headers: myHeaders });
+  return fetch(myRequest).then(function (response) {
+    return response.json();
+  }).then(function (responseJson) {
+    console.log("responseJson ", responseJson.value);
+  }).catch(function (error) {
+    console.log("error ", error);
+  });
+}
+store.subscribe(handleChange);
 
 (0, _reactDom.render)(_react2.default.createElement(
   Provider,

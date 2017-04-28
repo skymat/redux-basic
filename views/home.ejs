@@ -8,7 +8,22 @@
 
   
   <body>
-    <div id="container"></div>
+    <div id="container" state="<%= state%>"></div>
+
+    <script>
+    <%
+      if(state == null) {
+    %>
+      var initialState = null;
+    <%
+    } else {
+    %>
+      var initialState = <%- state %>;
+    <%
+    }
+    %>
+    </script>
+
     <script src="./bundle.js"></script>
   </body>
   

@@ -3,7 +3,6 @@ var connect   = require('react-redux').connect
 import TitleCounter from '../Components/TitleCounter'
 
 function mapStateToProps(state) {
-  console.log(state);
   return { value: state.counter,positionx : state.pixel.x , positiony:state.pixel.y}
 }
 
